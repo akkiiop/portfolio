@@ -60,30 +60,31 @@ const Navbar: React.FC = () => {
             </span>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation & Social Links */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="text-gray-300 hover:text-white hover:text-indigo-400 font-medium transition-colors duration-300"
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
+            <div className="flex items-center space-x-8">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className="text-gray-300 hover:text-white hover:text-indigo-400 font-medium transition-colors duration-300"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
 
-          {/* Desktop Social Links */}
-          <div className="hidden md:flex items-center space-x-4">
-            <a href="https://github.com/akkiiop" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-              <Github size={20} />
-            </a>
-            <a href="https://www.linkedin.com/in/akshay-kawade-67a5a5324/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-              <Linkedin size={20} />
-            </a>
-            <a href="mailto:kawadeakshay93@gmail.com" className="text-gray-400 hover:text-white transition-colors">
-              <Mail size={20} />
-            </a>
+            <div className="flex items-center space-x-4 border-l border-gray-700 pl-8">
+              <a href="https://github.com/akkiiop" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                <Github size={20} />
+              </a>
+              <a href="https://www.linkedin.com/in/akshay-kawade-67a5a5324/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                <Linkedin size={20} />
+              </a>
+              <a href="mailto:kawadeakshay93@gmail.com" className="text-gray-400 hover:text-white transition-colors">
+                <Mail size={20} />
+              </a>
+            </div>
           </div>
 
           {/* Mobile Menu Button - Explicitly Visible */}
