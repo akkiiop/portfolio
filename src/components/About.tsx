@@ -29,15 +29,15 @@ const About: React.FC = () => {
           </div>
 
           <div className={`text-gray-300 transition-all duration-1000 delay-600 transform ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-            <h3 className="text-2xl font-bold text-white mb-4">Full Stack Developer</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">Full Stack MERN Developer</h3>
             <p className="mb-6">
-              I'm Akshay, a passionate software developer currently pursuing my Bachelor of Engineering. I specialize in creating responsive and user-friendly web applications using modern technologies.
+              I'm Akshay, a passionate Full Stack Developer currently pursuing my Bachelor of Engineering, specializing in building scalable and user-friendly web applications using the MERN stack (MongoDB, Express.js, React, and Node.js).
             </p>
             <p className="mb-6">
-              With a strong foundation in both frontend and backend development, I enjoy building complete solutions from database design to user interfaces. My technical expertise includes Node.js, Express, React, and database management systems like MySQL and MongoDB.
+              With a strong foundation in both frontend and backend development, I enjoy creating complete solutions — from database architecture and RESTful APIs to responsive user interfaces. I have hands-on experience developing intelligent systems, including AI-powered nutrition and health tracking platforms.
             </p>
             <p className="mb-6">
-              I'm constantly learning and expanding my skill set to stay current with emerging technologies and best practices in software development.
+              I am continuously learning and improving my technical skills to stay aligned with modern development practices, performance optimization, and real-world industry standards.
             </p>
 
             <div className="grid grid-cols-2 gap-4 mb-8">
