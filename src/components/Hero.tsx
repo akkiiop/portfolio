@@ -50,7 +50,7 @@ const Hero: React.FC = () => {
 
         <div className="flex flex-col items-center justify-center space-y-6 opacity-0 animate-fade-in-delay">
           <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl px-2">
-            A passionate software developer specializing in web development and backend solutions.
+            A MERN Stack Developer building scalable web and AI-powered applications.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mt-8 animate-bounce-in-delay">
