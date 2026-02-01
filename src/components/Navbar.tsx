@@ -7,16 +7,29 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMenuOpen]);
+
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      const offsetTop = section.offsetTop;
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
       setIsMenuOpen(false);
     }
   };
@@ -31,22 +44,29 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || isMenuOpen ? 'bg-gray-900 shadow-lg' : 'bg-gray-900/80'
-      }`}>
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || isMenuOpen ? 'bg-gray-950 shadow-lg border-b border-gray-800' : 'bg-transparent'
+        }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 w-full">
           {/* Logo */}
-          <span className="text-xl font-bold text-white">
-            Akshay<span className="text-indigo-500">.</span>
-          </span>
+          <div className="flex-shrink-0 z-50">
+            <span
+              className="text-2xl font-bold text-white cursor-pointer"
+              onClick={() => scrollToSection('home')}
+            >
+              Akshay<span className="text-indigo-500">.</span>
+            </span>
+          </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-gray-300 hover:text-white text-sm font-medium transition-colors"
+                className="text-gray-300 hover:text-white hover:text-indigo-400 font-medium transition-colors duration-300"
               >
                 {item.label}
               </button>
@@ -55,54 +75,66 @@ const Navbar: React.FC = () => {
 
           {/* Desktop Social Links */}
           <div className="hidden md:flex items-center space-x-4">
-            <a href="https://github.com/akkiiop" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
+            <a href="https://github.com/akkiiop" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
               <Github size={20} />
             </a>
-            <a href="https://www.linkedin.com/in/akshay-kawade-67a5a5324/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
+            <a href="https://www.linkedin.com/in/akshay-kawade-67a5a5324/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
               <Linkedin size={20} />
             </a>
-            <a href="mailto:kawadeakshay93@gmail.com" className="text-gray-300 hover:text-white">
+            <a href="mailto:kawadeakshay93@gmail.com" className="text-gray-400 hover:text-white transition-colors">
               <Mail size={20} />
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-white hover:bg-gray-800 rounded-lg"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden pb-4">
-            <div className="flex flex-col space-y-2">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="text-gray-300 hover:text-white hover:bg-gray-800 px-4 py-3 rounded-lg text-left font-medium"
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-            <div className="flex space-x-4 px-4 pt-4 border-t border-gray-700 mt-4">
-              <a href="https://github.com/akkiiop" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white p-2 bg-gray-800 rounded-full">
-                <Github size={20} />
-              </a>
-              <a href="https://www.linkedin.com/in/akshay-kawade-67a5a5324/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white p-2 bg-gray-800 rounded-full">
-                <Linkedin size={20} />
-              </a>
-              <a href="mailto:kawadeakshay93@gmail.com" className="text-gray-300 hover:text-white p-2 bg-gray-800 rounded-full">
-                <Mail size={20} />
-              </a>
-            </div>
+          {/* Mobile Menu Button - Explicitly Visible */}
+          <div className="md:hidden flex items-center z-50">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 text-gray-100 hover:text-indigo-400 focus:outline-none transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X size={30} /> : <Menu size={30} />}
+            </button>
           </div>
-        )}
+        </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`fixed inset-0 bg-black/80 backdrop-blur-sm z-40 transition-opacity duration-300 md:hidden ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          }`}
+        onClick={() => setIsMenuOpen(false)}
+      />
+
+      {/* Mobile Menu Content */}
+      <div
+        className={`fixed top-16 left-0 right-0 bg-gray-900 border-b border-gray-800 z-40 transform transition-transform duration-300 md:hidden ${isMenuOpen ? 'translate-y-0 shadow-xl' : '-translate-y-full'
+          }`}
+      >
+        <div className="px-4 py-6 space-y-2">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className="block w-full text-left text-gray-300 hover:text-white hover:bg-gray-800 px-4 py-3 rounded-lg text-lg font-medium transition-all"
+            >
+              {item.label}
+            </button>
+          ))}
+
+          {/* Mobile Social Links */}
+          <div className="flex justify-center space-x-8 pt-6 border-t border-gray-800 mt-4">
+            <a href="https://github.com/akkiiop" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white hover:text-indigo-400 transition-colors">
+              <Github size={24} />
+            </a>
+            <a href="https://www.linkedin.com/in/akshay-kawade-67a5a5324/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white hover:text-indigo-400 transition-colors">
+              <Linkedin size={24} />
+            </a>
+            <a href="mailto:kawadeakshay93@gmail.com" className="text-gray-400 hover:text-white hover:text-indigo-400 transition-colors">
+              <Mail size={24} />
+            </a>
+          </div>
+        </div>
       </div>
     </nav>
   );
