@@ -40,16 +40,16 @@ const Hero: React.FC = () => {
         <div className="twinkling"></div>
       </div>
 
-      <div className="relative z-10 text-center max-w-5xl px-4 sm:px-6 lg:px-8 space-y-6">
+      <div className="relative z-10 text-center max-w-5xl px-6 sm:px-8 lg:px-8 space-y-6">
         <h1
           ref={textRef}
-          className="text-4xl md:text-6xl font-bold text-white opacity-0 transform translate-y-10"
+          className="text-3xl sm:text-4xl md:text-6xl font-bold text-white opacity-0 transform translate-y-10"
         >
           Hi, I'm <span className="text-indigo-500">Akshay Kawade</span>
         </h1>
 
         <div className="flex flex-col items-center justify-center space-y-6 opacity-0 animate-fade-in-delay">
-          <p className="text-xl text-gray-300 max-w-2xl">
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl px-2">
             A passionate software developer specializing in web development and backend solutions.
           </p>
 
