@@ -60,7 +60,7 @@ const About: React.FC = () => {
               className="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105"
               onClick={() =>
                 window.open(
-                  "https://drive.google.com/uc?export=download&id=1otCKrRuFYoDlheaky7a2INUW-ZAQG5HY",
+                  "https://drive.google.com/file/d/1nXLQnAjmxTRoqy9Ilx6q9VsMNGge8Bhn/view?usp=drive_link",
                   "_blank"
                 )
               }
