@@ -4,6 +4,20 @@ import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Check initially
+    checkMobile();
+
+    // Listen for resize
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,43 +74,47 @@ const Navbar: React.FC = () => {
             </span>
           </div>
 
-          {/* Desktop Navigation & Social Links */}
-          <div className="hidden md:flex items-center space-x-8 desktop-only">
-            <div className="flex items-center space-x-8">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="text-gray-300 hover:text-white hover:text-indigo-400 font-medium transition-colors duration-300"
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
+          {/* Desktop Navigation & Social Links - Removed from DOM on mobile */}
+          {!isMobile && (
+            <div className="hidden md:flex items-center space-x-8">
+              <div className="flex items-center space-x-8">
+                {navItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className="text-gray-300 hover:text-white hover:text-indigo-400 font-medium transition-colors duration-300"
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
 
-            <div className="flex items-center space-x-4 border-l border-gray-700 pl-8">
-              <a href="https://github.com/akkiiop" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <Github size={20} />
-              </a>
-              <a href="https://www.linkedin.com/in/akshay-kawade-67a5a5324/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <Linkedin size={20} />
-              </a>
-              <a href="mailto:kawadeakshay93@gmail.com" className="text-gray-400 hover:text-white transition-colors">
-                <Mail size={20} />
-              </a>
+              <div className="flex items-center space-x-4 border-l border-gray-700 pl-8">
+                <a href="https://github.com/akkiiop" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                  <Github size={20} />
+                </a>
+                <a href="https://www.linkedin.com/in/akshay-kawade-67a5a5324/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                  <Linkedin size={20} />
+                </a>
+                <a href="mailto:kawadeakshay93@gmail.com" className="text-gray-400 hover:text-white transition-colors">
+                  <Mail size={20} />
+                </a>
+              </div>
             </div>
-          </div>
+          )}
 
-          {/* Mobile Menu Button - Explicitly Visible */}
-          <div className="md:hidden flex items-center z-50">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-gray-100 hover:text-indigo-400 focus:outline-none transition-colors"
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? <X size={30} /> : <Menu size={30} />}
-            </button>
-          </div>
+          {/* Mobile Menu Button - Visible ONLY on mobile */}
+          {isMobile && (
+            <div className="flex items-center z-50">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="p-2 text-gray-100 hover:text-indigo-400 focus:outline-none transition-colors"
+                aria-label="Toggle menu"
+              >
+                {isMenuOpen ? <X size={30} /> : <Menu size={30} />}
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
