@@ -7,6 +7,7 @@ const Skills: React.FC = () => {
   const isInView = useInView(sectionRef, { threshold: 0.2 });
 
   const categories = [
+    { id: 'mern', title: '🚀 MERN Stack' },
     { id: 'languages', title: '💻 Programming Languages' },
     { id: 'frameworks', title: '⚙️ Frameworks & Libraries' },
     { id: 'backend', title: '🔗 Backend & APIs' },

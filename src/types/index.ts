@@ -21,6 +21,6 @@ export interface Education {
 export interface Skill {
   id: number;
   name: string;
-  category: 'languages' | 'frameworks' | 'backend' | 'databases' | 'tools';
+  category: 'mern' | 'languages' | 'frameworks' | 'backend' | 'databases' | 'tools';
   icon?: string;
 }
