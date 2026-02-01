@@ -5,14 +5,14 @@ import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
 const Contact: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { threshold: 0.1 });
-  
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: ''
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
@@ -24,18 +24,25 @@ const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
+
+    // Create mailto link with form data
+    const mailtoLink = `mailto:kawadeakshay93@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    )}`;
+
+    // Open email client
+    window.location.href = mailtoLink;
+
+    // Show success and reset form
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitSuccess(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
-      
-      // Reset success message after 5 seconds
+
       setTimeout(() => {
         setSubmitSuccess(false);
       }, 5000);
-    }, 1500);
+    }, 500);
   };
 
   return (
@@ -53,7 +60,7 @@ const Contact: React.FC = () => {
           {/* Contact Info */}
           <div className={`transition-all duration-1000 delay-300 transform ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
             <h3 className="text-2xl font-bold text-white mb-8">Contact Information</h3>
-            
+
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
                 <div className="bg-indigo-600/20 p-3 rounded-lg">
@@ -64,7 +71,7 @@ const Contact: React.FC = () => {
                   <a href="mailto:kawadeakshay93@gmail.com" className="text-gray-300 hover:text-indigo-400 transition-colors">kawadeakshay93@gmail.com</a>
                 </div>
               </div>
-              
+
               <div className="flex items-start space-x-4">
                 <div className="bg-indigo-600/20 p-3 rounded-lg">
                   <Phone className="text-indigo-500" />
@@ -74,7 +81,7 @@ const Contact: React.FC = () => {
                   <a href="tel:+919766205339" className="text-gray-300 hover:text-indigo-400 transition-colors">+91 9766205339</a>
                 </div>
               </div>
-              
+
               <div className="flex items-start space-x-4">
                 <div className="bg-indigo-600/20 p-3 rounded-lg">
                   <MapPin className="text-indigo-500" />
@@ -85,27 +92,27 @@ const Contact: React.FC = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="mt-12">
               <h3 className="text-xl font-bold text-white mb-4">Connect With Me</h3>
               <div className="flex space-x-4">
-                <a 
-                  href="https://github.com/akkiiop" 
-                  target="_blank" 
+                <a
+                  href="https://github.com/akkiiop"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gray-800 p-4 rounded-lg hover:bg-indigo-600 transition-colors duration-300"
                 >
                   <Github className="text-white" />
                 </a>
-                <a 
-                  href="https://www.linkedin.com/in/akshay-kawade-67a5a5324/" 
-                  target="_blank" 
+                <a
+                  href="https://www.linkedin.com/in/akshay-kawade-67a5a5324/"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gray-800 p-4 rounded-lg hover:bg-indigo-600 transition-colors duration-300"
                 >
                   <Linkedin className="text-white" />
                 </a>
-                <a 
+                <a
                   href="mailto:kawadeakshay93@gmail.com"
                   className="bg-gray-800 p-4 rounded-lg hover:bg-indigo-600 transition-colors duration-300"
                 >
@@ -114,17 +121,19 @@ const Contact: React.FC = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Contact Form */}
           <div className={`transition-all duration-1000 delay-600 transform ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
             <div className="bg-gray-800 rounded-xl p-8">
               <h3 className="text-2xl font-bold text-white mb-6">Send Me a Message</h3>
-              
-              {submitSuccess ? (
+
+              {submitSuccess && (
                 <div className="bg-green-500/20 border border-green-500 rounded-lg p-4 mb-6">
-                  <p className="text-green-400 font-medium">Your message has been sent successfully! I'll get back to you soon.</p>
+                  <p className="text-green-400 font-medium">Opening your email app... Your message will be sent to kawadeakshay93@gmail.com</p>
                 </div>
-              ) : (
+              )}
+
+              {!submitSuccess && (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-gray-300 mb-2">Your Name</label>
@@ -139,7 +148,7 @@ const Contact: React.FC = () => {
                       placeholder="John Doe"
                     />
                   </div>
-                  
+
                   <div>
                     <label htmlFor="email" className="block text-gray-300 mb-2">Your Email</label>
                     <input
@@ -153,7 +162,7 @@ const Contact: React.FC = () => {
                       placeholder="john@example.com"
                     />
                   </div>
-                  
+
                   <div>
                     <label htmlFor="subject" className="block text-gray-300 mb-2">Subject</label>
                     <input
@@ -167,7 +176,7 @@ const Contact: React.FC = () => {
                       placeholder="Project Inquiry"
                     />
                   </div>
-                  
+
                   <div>
                     <label htmlFor="message" className="block text-gray-300 mb-2">Message</label>
                     <textarea
@@ -181,13 +190,12 @@ const Contact: React.FC = () => {
                       placeholder="Your message here..."
                     />
                   </div>
-                  
+
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full py-3 px-6 rounded-lg flex items-center justify-center gap-2 text-white font-medium transition-all duration-300 transform hover:scale-105 ${
-                      isSubmitting ? 'bg-indigo-800 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700'
-                    }`}
+                    className={`w-full py-3 px-6 rounded-lg flex items-center justify-center gap-2 text-white font-medium transition-all duration-300 transform hover:scale-105 ${isSubmitting ? 'bg-indigo-800 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700'
+                      }`}
                   >
                     {isSubmitting ? (
                       <>

@@ -29,9 +29,8 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      scrollPosition > 100 ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
-    }`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrollPosition > 100 ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
+      }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
@@ -62,13 +61,13 @@ const Navbar: React.FC = () => {
             </div>
           </div>
           <div className="hidden md:flex items-center space-x-4">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
+            <a href="https://github.com/akkiiop" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
               <Github size={20} />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
+            <a href="https://www.linkedin.com/in/akshay-kawade-67a5a5324/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
               <Linkedin size={20} />
             </a>
-            <a href="mailto:example@example.com" className="text-gray-300 hover:text-white transition-colors">
+            <a href="mailto:kawadeakshay93@gmail.com" className="text-gray-300 hover:text-white transition-colors">
               <Mail size={20} />
             </a>
           </div>
@@ -91,13 +90,13 @@ const Navbar: React.FC = () => {
           <button onClick={() => scrollToSection('education')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Education</button>
           <button onClick={() => scrollToSection('contact')} className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</button>
           <div className="flex space-x-4 px-3 py-2">
-            <a href="https://github.com/Shubham0D4" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
+            <a href="https://github.com/akkiiop" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
               <Github size={20} />
             </a>
-            <a href="https://linkedin.com/shubham-darekar-236424257" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
+            <a href="https://www.linkedin.com/in/akshay-kawade-67a5a5324/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
               <Linkedin size={20} />
             </a>
-            <a href="mailto:darekarshubham2005@gmail.com" className="text-gray-300 hover:text-white">
+            <a href="mailto:kawadeakshay93@gmail.com" className="text-gray-300 hover:text-white">
               <Mail size={20} />
             </a>
           </div>

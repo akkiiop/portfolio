@@ -7,10 +7,11 @@ const Skills: React.FC = () => {
   const isInView = useInView(sectionRef, { threshold: 0.2 });
 
   const categories = [
-    { id: 'languages', title: 'Languages' },
-    { id: 'frameworks', title: 'Frameworks/Libraries' },
-    { id: 'databases', title: 'Databases' },
-    { id: 'tools', title: 'Tools' }
+    { id: 'languages', title: '💻 Programming Languages' },
+    { id: 'frameworks', title: '⚙️ Frameworks & Libraries' },
+    { id: 'backend', title: '🔗 Backend & APIs' },
+    { id: 'databases', title: '🗄️ Databases' },
+    { id: 'tools', title: '🛠️ Tools & Platforms' }
   ];
 
   return (
@@ -26,20 +27,20 @@ const Skills: React.FC = () => {
 
         <div className="space-y-16">
           {categories.map((category, categoryIndex) => (
-            <div 
+            <div
               key={category.id}
               className={`transition-all duration-1000 delay-${categoryIndex * 200} transform ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             >
               <h3 className="text-2xl font-semibold text-white mb-8 border-l-4 border-indigo-500 pl-4">{category.title}</h3>
-              
+
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {skills
                   .filter(skill => skill.category === category.id)
                   .map((skill, index) => {
                     const IconComponent = skill.icon ? getIconComponent(skill.icon) : null;
-                    
+
                     return (
-                      <div 
+                      <div
                         key={skill.id}
                         className={`bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/20 flex items-center transition-all duration-300 delay-${index * 100}`}
                       >

@@ -17,9 +17,9 @@ const About: React.FC = () => {
           <div className={`transition-all duration-1000 delay-300 transform ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
             <div className="relative">
               <div className="bg-indigo-600 rounded-lg w-full h-full absolute -top-4 -left-4"></div>
-              <img 
-                src="https://images.pexels.com/photos/2102416/pexels-photo-2102416.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                alt="Profile" 
+              <img
+                src="/profile.jpg"
+                alt="Akshay Kawade"
                 className="w-full h-full object-cover rounded-lg relative z-10"
               />
               <div className="absolute -bottom-4 -right-4 w-28 h-28 bg-gray-800 rounded-lg flex items-center justify-center z-20">
@@ -53,20 +53,20 @@ const About: React.FC = () => {
                 <p className="text-gray-400">Location:</p>
                 <p className="font-semibold text-white">Ahilyanagar, India</p>
               </div>
-              
+
             </div>
 
             <button
-  className="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105"
-  onClick={() =>
-    window.open(
-      "https://drive.google.com/uc?export=download&id=1nXLQnAjmxTRoqy9Ilx6q9VsMNGge8Bhn",
-      "_blank"
-    )
-  }
->
-  Download Resume
-</button>
+              className="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105"
+              onClick={() =>
+                window.open(
+                  "https://drive.google.com/uc?export=download&id=1otCKrRuFYoDlheaky7a2INUW-ZAQG5HY",
+                  "_blank"
+                )
+              }
+            >
+              Download Resume
+            </button>
 
           </div>
         </div>

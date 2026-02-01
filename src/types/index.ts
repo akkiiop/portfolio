@@ -5,6 +5,8 @@ export interface Project {
   date: string;
   technologies: string[];
   imageUrl?: string;
+  githubUrl?: string;
+  demoUrl?: string;
 }
 
 export interface Education {
@@ -19,6 +21,6 @@ export interface Education {
 export interface Skill {
   id: number;
   name: string;
-  category: 'languages' | 'frameworks' | 'databases' | 'tools';
+  category: 'languages' | 'frameworks' | 'backend' | 'databases' | 'tools';
   icon?: string;
 }
